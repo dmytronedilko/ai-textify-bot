@@ -1,0 +1,48 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Caches and logs
+*.log
+*.sqlite3
+*.db
+*.tmp
+
+# Virtual environment
+venv/
+env/
+.venv/
+.env/
+.envrc
+
+# VSCode / PyCharm settings
+.vscode/
+.idea/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Audio files generated during processing
+*.ogg
+*.mp3
+*.wav
+
+# Output folders
+output/
+transcripts/
+downloads/
+
+# Python dependency management
+pip-log.txt
+poetry.lock
+Pipfile.lock
+
+# Jupyter and IPython
+.ipynb_checkpoints/
+*.ipynb
+
+# macOS metadata
+*.DS_Store
