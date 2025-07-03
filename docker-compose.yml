@@ -1,0 +1,7 @@
+services:
+  audio-converter:
+    container_name: audio_converter
+    build: .
+    restart: always
+    env_file:
+      - .env
