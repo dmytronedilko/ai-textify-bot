@@ -1,6 +1,6 @@
 services:
   audio-converter:
-    container_name: audio_converter
+    container_name: textify
     build: .
     volumes:
       - .:/app
