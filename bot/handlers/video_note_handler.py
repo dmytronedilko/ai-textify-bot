@@ -16,18 +16,19 @@ def register_video_note_handler(bot, client):
         input_path = f"input_{message.message_id}.mp4"
         mp3_path = f"user_{message.from_user.id}_msg_{message.message_id}.mp3"
 
-        await bot.download_file(file_info.file_path, input_path)
-        await message.answer("Converting...")
+        processing_msg = await message.answer("🎧 Converting...")
 
         try:
+            await bot.download_file(file_info.file_path, input_path)
+
             subprocess.run([
                 "ffmpeg", "-y", "-i", input_path, "-vn", "-acodec", "libmp3lame", mp3_path
             ], check=True)
 
             text = transcribe_audio(mp3_path, client)
-            await message.reply(text)
+            await processing_msg.edit_text(text)
         except Exception as e:
-            await message.reply(f"Error: {e}")
+            await processing_msg.edit_text(f"Error: {e}")
         finally:
             os.remove(input_path)
             os.remove(mp3_path)

@@ -14,15 +14,16 @@ def register_voice_handler(bot, client):
         ogg_path = f"voice_{message.message_id}.ogg"
         mp3_path = f"user_{message.from_user.id}_msg_{message.message_id}.mp3"
 
-        await bot.download_file(file_info.file_path, ogg_path)
-        await message.answer("Converting...")
+        processing_msg = await message.answer("Converting...")
 
         try:
+            await bot.download_file(file_info.file_path, ogg_path)
+
             convert_ogg_to_mp3(ogg_path, mp3_path)
             text = transcribe_audio(mp3_path, client)
-            await message.reply(text)
+            await processing_msg.edit_text(text)
         except Exception as e:
-            await message.reply(f"Error: {e}")
+            await processing_msg.edit_text(f"Error: {e}")
         finally:
             os.remove(ogg_path)
             os.remove(mp3_path)
