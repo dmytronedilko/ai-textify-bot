@@ -2,6 +2,8 @@ services:
   audio-converter:
     container_name: audio_converter
     build: .
+    volumes:
+      - .:/app
     restart: always
     env_file:
       - .env
