@@ -6,6 +6,7 @@ import subprocess
 
 router = Router()
 
+
 def register_textify_handler(bot, client):
     @router.message(Command("textify"))
     async def handle_textify_command(message: types.Message):
@@ -14,14 +15,16 @@ def register_textify_handler(bot, client):
         if not reply_msg or not (
             reply_msg.voice or reply_msg.video_note
         ):
-            await message.reply("❌ The /textify command must be a response to a voice message or video note.")
+            await message.reply("❌ The /textify command must be a response"
+                                "to a voice message or video note.")
             return
 
         file = reply_msg.voice or reply_msg.video_note
         file_id = file.file_id
         file_info = await bot.get_file(file_id)
 
-        input_path = f"input_{message.message_id}.ogg" if reply_msg.voice else f"input_{message.message_id}.mp4"
+        input_path = f"input_{message.message_id}.ogg" if (
+            reply_msg.voice) else f"input_{message.message_id}.mp4"
         mp3_path = f"user_{message.from_user.id}_msg_{message.message_id}.mp3"
 
         processing_msg = await message.reply("🎧 Converting...")

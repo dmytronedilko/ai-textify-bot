@@ -18,4 +18,3 @@ dp.include_router(start.router)
 dp.include_router(register_voice_handler(bot, client))
 dp.include_router(register_video_note_handler(bot, client))
 dp.include_router(register_textify_handler(bot, client))
-
