@@ -6,6 +6,7 @@ from services.transcription import transcribe_audio
 
 router = Router()
 
+
 def register_video_note_handler(bot, client):
     @router.message(lambda m: m.video_note is not None)
     async def handle_video_note(message: types.Message):

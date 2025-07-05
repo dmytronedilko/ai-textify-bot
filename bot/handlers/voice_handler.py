@@ -4,6 +4,7 @@ from services.transcription import convert_ogg_to_mp3, transcribe_audio
 
 router = Router()
 
+
 def register_voice_handler(bot, client):
     @router.message(lambda m: m.voice is not None)
     async def handle_voice(message: types.Message):
