@@ -1,0 +1,27 @@
+name: Tests
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.11
+
+      - name: Install uv
+        run: pip install uv
+
+      - name: Install project with dev dependencies
+        run: uv pip install -e ".[dev]" --system
+
+      - name: Run tests
+        run: python -m unittest discover tests
+        env:
+          TG_BOT_API_KEY: ${{ secrets.TG_BOT_API_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
