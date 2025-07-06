@@ -1,5 +1,7 @@
 import os
 from aiogram import Router, types
+
+from services.rate_limiter import is_allowed
 from services.transcription import convert_ogg_to_mp3, transcribe_audio
 
 router = Router()
@@ -8,6 +10,18 @@ router = Router()
 def register_voice_handler(bot, client):
     @router.message(lambda m: m.voice is not None)
     async def handle_voice(message: types.Message):
+        user_id = message.from_user.id
+
+        if not await is_allowed(user_id):
+            await message.reply(
+                f"❌ You’ve reached the weekly limit of "
+                f"{os.getenv('WEEKLY_LIMIT', 10)} voice or video messages.\n\n"
+                f"🚀 To unlock <b>unlimited</b> access to the bot, "
+                f"upgrade to Premium using the /premium command.",
+                parse_mode="HTML"
+            )
+            return
+
         file_id = message.voice.file_id
         file_info = await bot.get_file(file_id)
 
