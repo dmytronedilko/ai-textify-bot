@@ -17,7 +17,7 @@ def register_textify_handler(bot, client):
         if not reply_msg or not (
             reply_msg.voice or reply_msg.video_note
         ):
-            await message.reply("❌ The /textify command must be a response"
+            await message.reply("❌ The /textify command must be a response "
                                 "to a voice message or video note.")
             return
 
