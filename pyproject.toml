@@ -21,6 +21,7 @@ dependencies = [
     "distro==1.9.0",
     "dotenv==0.9.9",
     "frozenlist==1.7.0",
+    "fuzzywuzzy==0.18.0",
     "h11==0.16.0",
     "httpcore==1.0.9",
     "httptools==0.6.4",
@@ -45,6 +46,18 @@ dependencies = [
     "watchfiles==1.1.0",
     "websockets==15.0.1",
     "yarl==1.20.1"
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "pytest-asyncio",
+    "coverage",
+    "mypy",
+    "ruff",
+    "python-Levenshtein",
+    "types-requests",
+    "types-python-dotenv"
 ]
 
 [build-system]
