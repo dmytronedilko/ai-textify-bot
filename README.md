@@ -16,7 +16,7 @@ A Telegram bot that converts voice messages and video notes to text using OpenAI
 - **aiogram 3.x** — modern async Telegram Bot framework
 - **OpenAI Whisper API** — speech recognition service
 - **Docker** — containerization
-- **Python 3.13** — backend language
+- **Python 3.11** — backend language
 
 ## 🤖 Bot Commands
 
