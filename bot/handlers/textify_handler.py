@@ -1,6 +1,8 @@
 import os
 from aiogram import Router, types
 from aiogram.filters import Command
+
+from services.rate_limiter import is_allowed
 from services.transcription import convert_ogg_to_mp3, transcribe_audio
 import subprocess
 
@@ -17,6 +19,18 @@ def register_textify_handler(bot, client):
         ):
             await message.reply("❌ The /textify command must be a response"
                                 "to a voice message or video note.")
+            return
+
+        user_id = message.from_user.id
+
+        if not await is_allowed(user_id):
+            await message.reply(
+                f"❌ You’ve reached the weekly limit of "
+                f"{os.getenv('WEEKLY_LIMIT', 10)} voice or video messages.\n\n"
+                f"🚀 To unlock <b>unlimited</b> access to the bot, "
+                f"upgrade to Premium using the /premium command.",
+                parse_mode="HTML"
+            )
             return
 
         file = reply_msg.voice or reply_msg.video_note
