@@ -46,8 +46,7 @@ dependencies = [
     "websockets==15.0.1",
     "yarl==1.20.1",
     "fuzzywuzzy==0.18.0",
-    "python-Levenshtein",
-    "pyaudioop"
+    "python-Levenshtein"
 ]
 
 [build-system]
