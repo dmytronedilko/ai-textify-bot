@@ -20,7 +20,7 @@ jobs:
           echo "$HOME/.cargo/bin" >> $GITHUB_PATH
 
       - name: Install Dependencies
-        run: uv pip compile pyproject.toml --output requirements.txt
+        run: uv pip compile pyproject.toml --output-file requirements.txt
 
       - name: Run tests
         run: python -m unittest discover -s tests
