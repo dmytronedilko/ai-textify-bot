@@ -1,0 +1,27 @@
+name: Tests check
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python 3.8
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.8'
+
+      - name: Install uv
+        run: |
+          curl -LsSf https://astral.sh/uv/install.sh | sh
+          echo "$HOME/.cargo/bin" >> $GITHUB_PATH
+
+      - name: Install Dependencies
+        run: uv pip install --system -r <(uv pip compile pyproject.toml)
+
+      - name: Run tests
+        run: python -m unittest discover -s tests
+        continue-on-error: false
