@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: SSH Deploy
+      - name: Deploy via token
         uses: appleboy/ssh-action@v0.1.10
         with:
           host: ${{ secrets.SSH_HOST }}
@@ -19,9 +19,9 @@ jobs:
           passphrase: ${{ secrets.SSH_PASSPHRASE }}
           script: |
             cd ${{ secrets.APP_PATH }}
+            git remote set-url origin https://${{ secrets.ACCESS_TOKEN }}@github.com/dmytronedilko/ai-textify-bot.git
             git fetch origin
             git checkout AIT-10-cd-delivery-by-main-branch-change
             git pull origin AIT-10-cd-delivery-by-main-branch-change
             docker compose down
             docker compose up -d --build
-        
