@@ -16,6 +16,7 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
+          passphrase: ${{ secrets.SSH_PASSPHRASE }}
           script: |
             cd ${{ secrets.APP_PATH }}
             git fetch origin
@@ -23,3 +24,4 @@ jobs:
             git pull origin deploy-test
             docker compose down
             docker compose up -d --build
+        
