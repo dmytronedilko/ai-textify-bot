@@ -1,9 +1,9 @@
-name: Deploy Test to Server
+name: Deploy to Server
 
 on:
   push:
     branches:
-      - AIT-10-cd-delivery-by-main-branch-change
+      - main
 
 jobs:
   deploy:
@@ -21,7 +21,7 @@ jobs:
             cd ${{ secrets.APP_PATH }}
             git remote set-url origin https://${{ secrets.ACCESS_TOKEN }}@github.com/dmytronedilko/ai-textify-bot.git
             git fetch origin
-            git checkout AIT-10-cd-delivery-by-main-branch-change
-            git pull origin AIT-10-cd-delivery-by-main-branch-change
+            git checkout main
+            git pull origin main
             docker compose down
             docker compose up -d --build
