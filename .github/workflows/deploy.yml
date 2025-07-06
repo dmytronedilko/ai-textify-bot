@@ -1,0 +1,25 @@
+name: Deploy Test to Server
+
+on:
+  push:
+    branches:
+      - AIT-10-cd-delivery-by-main-branch-change
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: SSH Deploy & Restart Docker
+        uses: appleboy/ssh-action@v0.1.10
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            cd ${{ secrets.APP_PATH }}
+            git fetch origin
+            git checkout deploy-test
+            git pull origin deploy-test
+            docker compose down
+            docker compose up -d --build
