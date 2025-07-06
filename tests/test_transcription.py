@@ -19,9 +19,9 @@ class TestTranscription(unittest.TestCase):
                 Dancing in the masquerade,
                 idle truth and plain sight jaded, pop, roll, click, shot,
                 who will I be today or not?
-                But such a tide as moving seems asleep, 
+                But such a tide as moving seems asleep,
                 too full for sound and foam, when that witch
-                drew from out the boundless deep turns again home, 
+                drew from out the boundless deep turns again home,
                 twilight and evening bell and after
                 that
                 '''
@@ -30,8 +30,10 @@ class TestTranscription(unittest.TestCase):
 
         similarity = fuzz.ratio(normalize(expected), normalize(actual))
 
-        self.assertGreaterEqual(similarity, 95,
-                                f"Text similarity too low: {similarity}%\nActual:\n{actual}\nExpected:\n{expected}")
+        self.assertGreaterEqual(
+            similarity,
+            95,
+            f"Text similarity too low: {similarity}%\nActual:\n{actual}\nExpected:\n{expected}")
 
         print(f"Text similarity: {similarity}%\nActual:\n{actual}\nExpected:\n{expected}")
 
@@ -41,10 +43,10 @@ class TestTranscription(unittest.TestCase):
 
         expected = '''
                 Hey there, this is a quick and silly video to allow you to experiment
-                a little bit with the process of transcription on YouTube. 
-                Also I'm looking for you to do here is to use the YouTube tool to 
-                transcribe this message and then click sync and set the timing so 
-                you can get a quick idea about how the whole process works. 
+                a little bit with the process of transcription on YouTube.
+                Also I'm looking for you to do here is to use the YouTube tool to
+                transcribe this message and then click sync and set the timing so
+                you can get a quick idea about how the whole process works.
                 Well, this wraps up the video, good luck and I will talk to you about
                 it soon.
                 '''
@@ -53,9 +55,12 @@ class TestTranscription(unittest.TestCase):
 
         similarity = fuzz.ratio(normalize(expected), normalize(actual))
 
-        self.assertGreaterEqual(similarity, 95,
-                                f"Text similarity too low: {similarity}%\nActual:\n{actual}\nExpected:\n{expected}")
+        self.assertGreaterEqual(
+            similarity,
+            95,
+            f"Text similarity too low: {similarity}%\nActual:\n{actual}\nExpected:\n{expected}")
         print(f"Text similarity: {similarity}%\nActual:\n{actual}\nExpected:\n{expected}")
+
 
 if __name__ == '__main__':
     unittest.main()
