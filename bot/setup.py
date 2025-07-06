@@ -11,17 +11,23 @@ from bot.handlers.voice_handler import register_voice_handler
 
 load_dotenv()
 
-bot = Bot(token=os.getenv("TG_BOT_API_KEY"))
-dp = Dispatcher()
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
-dp.include_router(start.router)
-dp.include_router(register_voice_handler(bot, client))
-dp.include_router(register_video_note_handler(bot, client))
-dp.include_router(register_textify_handler(bot, client))
+
+def create_bot_and_dispatcher():
+    bot = Bot(token=os.getenv("TG_BOT_API_KEY"))
+    dp = Dispatcher()
+
+    dp.include_router(start.router)
+    dp.include_router(register_voice_handler(bot, client))
+    dp.include_router(register_video_note_handler(bot, client))
+    dp.include_router(register_textify_handler(bot, client))
+
+    return bot, dp
 
 
 async def main():
+    bot, dp = create_bot_and_dispatcher()
     await dp.start_polling(bot)
 
 
