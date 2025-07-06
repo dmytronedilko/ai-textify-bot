@@ -20,8 +20,8 @@ jobs:
           script: |
             cd ${{ secrets.APP_PATH }}
             git fetch origin
-            git checkout deploy-test
-            git pull origin deploy-test
+            git checkout AIT-10-cd-delivery-by-main-branch-change
+            git pull origin AIT-10-cd-delivery-by-main-branch-change
             docker compose down
             docker compose up -d --build
         
