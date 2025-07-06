@@ -11,12 +11,10 @@ from bot.handlers.voice_handler import register_voice_handler
 
 load_dotenv()
 
-client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
-
-
-def create_bot_and_dispatcher():
+def create_bot():
     bot = Bot(token=os.getenv("TG_BOT_API_KEY"))
     dp = Dispatcher()
+    client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
     dp.include_router(start.router)
     dp.include_router(register_voice_handler(bot, client))
