@@ -56,8 +56,7 @@ dev = [
     "mypy",
     "ruff",
     "python-Levenshtein",
-    "types-requests",
-    "types-python-dotenv"
+    "types-requests"
 ]
 
 [build-system]
