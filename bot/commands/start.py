@@ -3,6 +3,8 @@ from aiogram.filters import Command
 from sqlalchemy.orm import Session
 from database.db import get_db
 from database.models import User
+from services.get_user_locale import get_user_locale
+from services.redis_client import redis_client
 
 router = Router()
 
@@ -18,13 +20,13 @@ async def start_command(message: types.Message):
             user = User(user_id=message.from_user.id, language="en")
             db.add(user)
             db.commit()
+            await redis_client.set(f"user_lang:{user.user_id}", "en", ex=10800)
 
-        await message.answer(
-            "👋 Welcome to Textify!\n\n"
-            "🎤 Just send a voice message — I’ll transcribe it for you.\n"
-            "📌 In groups, use the /textify command to transcribe replies.\n\n"
-            "❓ Need assistance? Use /support.",
-            parse_mode="Markdown"
-        )
+        locale = await get_user_locale(message.from_user.id)
+
+        await message.answer(locale["welcome_message"], parse_mode="Markdown")
     finally:
-        db_gen.close()
+        try:
+            next(db_gen)
+        except StopIteration:
+            pass
