@@ -3,7 +3,7 @@ FROM python:3.11-slim
 WORKDIR /app
 
 RUN apt-get update && \
-    apt-get install -y ffmpeg netcat && \
+    apt-get install -y ffmpeg netcat-openbsd && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
