@@ -26,11 +26,6 @@ env/
 .DS_Store
 Thumbs.db
 
-# Audio files generated during processing
-*.ogg
-*.mp3
-*.wav
-
 # Output folders
 output/
 transcripts/
@@ -47,3 +42,7 @@ Pipfile.lock
 
 # macOS metadata
 *.DS_Store
+
+#uv
+ai_textify_bot.egg-info/
+build/

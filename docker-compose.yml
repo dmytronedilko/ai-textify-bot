@@ -1,7 +1,41 @@
 services:
-  audio-converter:
-    container_name: audio_converter
+  db:
+    container_name: textify_db
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  redis:
+    container_name: textify_redis
+    image: redis:7
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+      - ./redis.conf:/usr/local/etc/redis/redis.conf
+    command: [ "redis-server", "/usr/local/etc/redis/redis.conf" ]
+
+  app:
+    container_name: textify_app
     build: .
+    command: >
+      /bin/sh -c "./wait-for-it.sh db:5432 -- alembic upgrade head && python main.py"
+    volumes:
+      - .:/app
     restart: always
     env_file:
       - .env
+    depends_on:
+      - db
+      - redis
+
+volumes:
+  pgdata:
+  redis_data:

@@ -1,0 +1,10 @@
+{
+  "welcome_message": "👋 Willkommen bei Textify!\n\n🎤 Sende einfach eine Sprachnachricht – ich werde sie für dich transkribieren.\n📌 In Gruppen verwende den Befehl /textify, um auf Sprachnachrichten zu antworten.\n\n❓ Brauchst du Hilfe? Verwende /support.",
+  "choose_language_prompt": "Bitte wähle deine Sprache:",
+  "language_set_confirmation": "✅ Sprache eingestellt auf: {language}",
+  "support_message": "🔧 <b>Support</b>\n\nWenn du Fragen hast, auf Probleme stößt oder Vorschläge teilen möchtest – wir sind für dich da!\n\n📨 <b>Kontaktiere uns:</b> <a href=\"https://forms.gle/9tTL4i23c6MMF5eo7\">Support-Formular</a>\n🛠 <b>Supportzeiten:</b> Mo–Fr, 10:00–19:00 (UTC+3)\n\nVielen Dank für die Nutzung unseres Bots! 💙",
+  "textify_error": "❌ Der Befehl /textify muss als Antwort auf eine Sprachnachricht oder Videonachricht verwendet werden.",
+  "weekly_limit_reached": "❌ Du hast das wöchentliche Limit von {WEEKLY_LIMIT} Sprach- oder Videonachrichten erreicht.\n\n🚀 Um <b>unbegrenzten</b> Zugriff auf den Bot zu erhalten, wechsle mit dem Befehl /premium zu Premium.",
+  "error_occurred": "Fehler: {error_msg}",
+  "converting": "🎧 Wird konvertiert..."
+}
