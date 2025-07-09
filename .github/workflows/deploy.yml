@@ -3,7 +3,7 @@ name: Deploy to Server
 on:
   push:
     branches:
-      - main
+      - cd-fixes
 
 jobs:
   deploy:
@@ -21,7 +21,7 @@ jobs:
             cd ${{ secrets.APP_PATH }}
             git remote set-url origin https://${{ secrets.ACCESS_TOKEN }}@github.com/dmytronedilko/ai-textify-bot.git
             git fetch origin
-            git checkout main
-            git pull origin main
+            git checkout cd-fixes
+            git pull origin cd-fixes
             docker compose down
             docker compose up -d --build
