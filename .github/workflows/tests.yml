@@ -25,3 +25,4 @@ jobs:
         env:
           TG_BOT_API_KEY: ${{ secrets.TG_BOT_API_KEY }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          POSTGRES_URL: ${{ secrets.POSTGRES_URL }}

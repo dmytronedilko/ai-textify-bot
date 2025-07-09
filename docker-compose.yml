@@ -25,6 +25,8 @@ services:
   app:
     container_name: textify_app
     build: .
+    command: >
+      /bin/sh -c "./wait-for-it.sh db:5432 -- alembic upgrade head && python main.py"
     volumes:
       - .:/app
     restart: always
