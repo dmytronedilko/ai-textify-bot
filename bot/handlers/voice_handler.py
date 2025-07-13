@@ -11,6 +11,9 @@ router = Router()
 def register_voice_handler(bot, client):
     @router.message(lambda m: m.voice is not None)
     async def handle_voice(message: types.Message):
+        if message.chat.type != "private":
+            return
+
         user_id = message.from_user.id
         locale = await get_user_locale(user_id)
 
