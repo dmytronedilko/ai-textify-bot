@@ -13,6 +13,9 @@ router = Router()
 def register_video_note_handler(bot, client):
     @router.message(lambda m: m.video_note is not None)
     async def handle_video_note(message: types.Message):
+        if message.chat.type != "private":
+            return
+
         user_id = message.from_user.id
         locale = await get_user_locale(user_id)
 
