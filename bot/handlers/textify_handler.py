@@ -48,7 +48,14 @@ def register_textify_handler(bot, client):
                 ], check=True)
 
             text = transcribe_audio(mp3_path, client)
-            await processing_msg.edit_text(text)
+            await processing_msg.delete()
+
+            await bot.send_message(
+                chat_id=message.chat.id,
+                text=f'<blockquote expandable>{text}</blockquote>',
+                reply_to_message_id=message.message_id,
+                parse_mode="HTML"
+            )
         except Exception as e:
             await processing_msg.edit_text(locale["error_occurred"].format(error_msg=e))
         finally:
